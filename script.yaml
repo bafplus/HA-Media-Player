@@ -4,9 +4,9 @@ start_playing:
   - variables: # Identifier for target mediaplayer, must be same as in helper file
       speaker: > 
         {% if is_state("input_select.radio_speaker", "Livingroom") %} 
-          media_player.chromecast3287
+          media_player.chromecast3287  # Entity ID of mediaplayer
         {% elif is_state("input_select.radio_speaker", "Kitchen") %} 
-          media_player.mediabox
+          media_player.mediabox  # Entity ID of mediaplayer
         {% endif %}
   - service: media_player.volume_set
     target:
