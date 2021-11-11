@@ -1,0 +1,16 @@
+radio_source: 
+  name: "Select station:"
+  options:  # List op options for source. Must match unique identifiers of each condition from the script.
+    - MP3
+    - Hallo Kids Radio
+    - Youtube
+  initial: MP3  # Option selected by default
+  icon: mdi:radio
+
+radio_speaker:
+  name: "Select speaker:"
+  options:  # List op options for target mediaplayer. Must match unique identifiers of each target from script.
+    - Livingroom
+    - Kitchen
+  initial: Livingroom  # Option selected by default
+  icon: mdi:speaker-wireless
