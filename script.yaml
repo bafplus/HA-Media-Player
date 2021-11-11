@@ -1,12 +1,12 @@
 start_playing:
   alias: Start Playing
   sequence:
-  - variables: # Identifier for target mediaplayer, must be same as in helper file
+  - variables: # Identifier for target mediaplayer, must be same as in helper file. Replace the entity ID for each targeted mediaplayer below
       speaker: > 
         {% if is_state("input_select.radio_speaker", "Livingroom") %} 
-          media_player.chromecast3287  # Entity ID of mediaplayer
+          media_player.livingroom  
         {% elif is_state("input_select.radio_speaker", "Kitchen") %} 
-          media_player.mediabox  # Entity ID of mediaplayer
+          media_player.kitchen  
         {% endif %}
   - service: media_player.volume_set
     target:
