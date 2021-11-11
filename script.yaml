@@ -3,9 +3,9 @@ start_playing:
   sequence:
   - variables: # Identifier for target mediaplayer, must be same as in helper file
       speaker: > 
-        {% if is_state("input_select.radio_speaker", "Woonkamer") %} 
+        {% if is_state("input_select.radio_speaker", "Livingroom") %} 
           media_player.chromecast3287
-        {% elif is_state("input_select.radio_speaker", "Mediabox") %} 
+        {% elif is_state("input_select.radio_speaker", "Kitchen") %} 
           media_player.mediabox
         {% endif %}
   - service: media_player.volume_set
