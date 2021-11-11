@@ -1,0 +1,7 @@
+type: entities
+entities:
+  - entity: input_select.radio_source
+  - entity: input_select.radio_speaker
+  - entity: input_number.radio_volume
+  - entity: script.start_playing'
+title: Play Media
