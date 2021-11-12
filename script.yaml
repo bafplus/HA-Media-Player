@@ -1,4 +1,4 @@
-start_playing:
+start_playing_audio:
   alias: Start Playing audio
   sequence:
   - variables:
