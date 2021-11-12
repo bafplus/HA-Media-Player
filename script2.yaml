@@ -23,7 +23,7 @@ start_playing:
           media_id: 'dQw4w9WgXcQ'   # Get the media_id from last part of youtube video URL (https://youtu.be/dQw4w9WgXcQ)
           
       default_image: 'https://www.101languages.net/images/radio/radio21.png'   # Default image if no image_url is given
-      speaker: >
+      speaker: >  # Identifier for target mediaplayer, must be same as in input-select.yaml file. Replace the entity ID for each targeted mediaplayer below
         {% if is_state("input_select.radio_speaker", "Livingroom") %} 
           media_player.livingroom
         {% elif is_state("input_select.radio_speaker", "Kitchen") %} 
