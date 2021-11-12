@@ -10,7 +10,7 @@ The installation stays the same as the original script.
 Within the script you see 3 examples, one for a mediafile like a MP3, one for a radiostream and one for a youtube video.
 The aim of this script is to work with google speakers and chromecast devices, but may possibly work on other mediaplayers like Echo dots etc. Just play around with the values for media_content_id and its metadata to fit your target device.
 
-To add a file, stream or video just copy/paste the needed condition as much as you need. Just dont forget to add each conditions name into the helper.
+To add a file, stream or video just copy/paste the needed condition as much as you need. Just dont forget to add each conditions name into the input-select helper.
 
 # Installation
 
