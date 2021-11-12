@@ -53,8 +53,8 @@ start_playing_audio:
                     {% set title = info[option].title | default(option) %}
                     {{ title if title != None else option }}
                   artist: >
-                    {% set artist = info[option].artist | default(option) %}
-                    {{ artist if artist != None else option }}
+                    {% set artist = info[option].artist | default('') %}
+                    {{ artist if artist != None else '' }}
                   images:
                     - url: >
                         {% set img = info[option].image_url | default(default_image) %}
