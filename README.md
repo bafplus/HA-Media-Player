@@ -14,9 +14,26 @@ To add a file, stream or video just copy/paste the needed condition as much as y
 
 # Installation
 
-- Create a helper named "radio_volume" and type "input_number". We need to add this within the UI because you cant add this type from the configuration.yaml. (a restart of HA may be needed afterwards)
-![radio_volume](https://www.digitaldomo.nl/wp-content/uploads/2021/08/image-3-1004x1024.png)
-- Add the contents of helpers.yaml in your configuration.yaml or link the file with "input_select: !include helpers.yaml". In this file there are 2 helpers to populate the dropdownlists. Make sure you use the exact names as the ones you use for each condition in the script. 
+- Add this to your configuration.yaml
+[code=yaml]
+input_number:
+  radio_volume:
+    name: Set Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 1
+    step: 0.05
+input_select:
+[/code]
+
+OR
+
+Add the files input-number.yaml and input-select.yaml in the same folder as your configuration.yaml
+Add this code to your configuration.yaml
+[code=yaml]
+input_select: !include input-select.yaml
+input_number: !include input-number.yaml
+[/code] 
 - Copy the contents of script.yaml into your script.
 - Add the content of lovelace-card.yaml into a new card on your lovelace dashboard.
 - Check if the script entity matches your script
