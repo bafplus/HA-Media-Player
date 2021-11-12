@@ -25,7 +25,7 @@ start_playing:
       default_image: 'https://www.101languages.net/images/radio/radio21.png'   # Default image if no image_url is given
       speaker: >  # Identifier for target mediaplayer, must be same as in input-select.yaml file. Replace the entity ID for each targeted mediaplayer below
         {% if is_state("input_select.radio_speaker", "Livingroom") %} 
-          media_player.livingroom
+          media_player.chromecast3287
         {% elif is_state("input_select.radio_speaker", "Kitchen") %} 
           media_player.kitchen
         {% endif %}
