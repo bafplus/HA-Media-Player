@@ -1,0 +1,71 @@
+start_playing:
+  alias: Start Playing
+  sequence:
+  - variables:
+      info:
+      # Put a block for each audio/videosource below. Here are 3 examples. Copy paste as many as you need.
+      
+        'MP3':   # Unique name, don't forget to add this name to the input-select list in your configuration.yaml or input-select.yaml!
+          type: stream    # Type of media, "stream" is used for audio file or stream
+          media_content_id: 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3'  # URL to audiofile
+          title: My cool MP3      # (Optional) Will override the item identifier to override the titel as shown on screen, Remove this line if not used
+          artist: Daddy Cool      # (Optional) Shows artist name on screen, Remove this line if not used
+          image_url: 'https://i1.sndcdn.com/artworks-000040478331-59oz19-t500x500.jpg'  # (Optional) Image to show as album art on screen
+          
+        'Hallo Kids Radio': # Unique name, don't forget to add this name to the input-select list in your configuration.yaml or input-select.yaml!
+          type: stream    # Type of media, "stream" is used for audio file or stream
+          media_content_id: 'https://ice.cr1.streamzilla.xlcdn.com:8000/sz=Hallokidsradio=mp3'   # Url to audio/radiostream
+          title: 'Hallo Kids Radio'   # (Optional) Will override the item identifier to override the titel as shown on screen, Remove this line if not used
+          image_url: 'https://www.hallokidsradio.nl/wp-content/uploads/2021/03/Logo_HKR-300x150.png' # (Optional) Image to show as album art on screen
+          
+        'Youtube':  # Unique name, don't forget to add this name to the input-select list in your configuration.yaml or input-select.yaml!
+          type: youtube   # Type of media, "youtube" is used for playing youtube video
+          media_id: 'dQw4w9WgXcQ'   # Get the media_id from last part of youtube video URL (https://youtu.be/dQw4w9WgXcQ)
+          
+      default_image: 'https://www.101languages.net/images/radio/radio21.png'   # Default image if no image_url is given
+      speaker: >
+        {% if is_state("input_select.radio_speaker", "Livingroom") %} 
+          media_player.livingroom
+        {% elif is_state("input_select.radio_speaker", "Kitchen") %} 
+          media_player.kitchen
+        {% endif %}
+      option: '{{ states("input_select.radio_source") }}'
+  - service: media_player.volume_set
+    target:
+      entity_id: '{{ speaker }}'
+    data:
+      volume_level: '{{ states("input_number.radio_volume") }}'
+  - choose:
+    - conditions: '{{ info[option].type == "stream" }}'
+      sequence:
+        - service: media_player.play_media
+          target:
+            entity_id: '{{ speaker }}'
+          data:
+              media_content_type: audio/mp3
+              media_content_id: '{{ info[option].media_content_id }}'
+              extra:
+                metadata:
+                  metadataType: >
+                    {% set meta = info[option].metadataType | default(3) %}
+                    {{ meta if meta != none else 3 }}
+                  title: >
+                    {% set title = info[option].title | default(option) %}
+                    {{ title if title != None else option }}
+                  artist: >
+                    {% set artist = info[option].artist | default(option) %}
+                    {{ artist if artist != None else option }}
+                  images:
+                    - url: >
+                        {% set img = info[option].image_url | default(default_image) %}
+                        {{ img if img != None else default_image }}
+    - conditions: '{{ info[option].type == "youtube" }}'
+      sequence:
+        - service: media_player.play_media
+          target:
+            entity_id: '{{ speaker }}'
+          data:
+            media_content_type: cast
+            media_content_id: '{ "app_name": "youtube", "media_id": "{{ info[option].media_id }}" }'
+  icon: mdi:play
+  mode: single
