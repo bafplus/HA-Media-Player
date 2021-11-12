@@ -1,4 +1,4 @@
-# Add these helpers to your configuration.yaml
+
 radio_source: 
   name: "Select station:"
   options:  # List op options for source. Must match unique identifiers of each condition from the script.
