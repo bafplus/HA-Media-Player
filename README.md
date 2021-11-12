@@ -15,7 +15,7 @@ To add a file, stream or video just copy/paste the needed condition as much as y
 # Installation
 
 - Add this to your configuration.yaml
-[code=yaml]
+```yaml
 input_number:
   radio_volume:
     name: Set Volume
@@ -24,16 +24,32 @@ input_number:
     max: 1
     step: 0.05
 input_select:
-[/code]
+  radio_source: 
+    name: "Select station:"
+    options:  # List op options for source. Must match unique identifiers of each condition from the script.
+      - MP3
+      - Hallo Kids Radio
+      - Youtube
+    initial: MP3  # Option selected by default
+    icon: mdi:radio
+
+  radio_speaker:
+    name: "Select speaker:"
+    options:  # List op options for target mediaplayer. Must match unique identifiers of each target from script.
+      - Livingroom
+      - Kitchen
+    initial: Livingroom  # Option selected by default
+    icon: mdi:speaker-wireless
+```
 
 OR
 
 Add the files input-number.yaml and input-select.yaml in the same folder as your configuration.yaml
 Add this code to your configuration.yaml
-[code=yaml]
+```yaml
 input_select: !include input-select.yaml
 input_number: !include input-number.yaml
-[/code] 
+```
 - Copy the contents of script.yaml into your script.
 - Add the content of lovelace-card.yaml into a new card on your lovelace dashboard.
 - Check if the script entity matches your script
