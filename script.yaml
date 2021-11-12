@@ -1,5 +1,5 @@
 start_playing:
-  alias: Start Playing
+  alias: Start Playing audio
   sequence:
   - variables:
       info:
